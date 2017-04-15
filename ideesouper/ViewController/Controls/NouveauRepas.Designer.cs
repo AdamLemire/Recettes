@@ -84,6 +84,7 @@
             this.nombrePersonneNumericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.IdeeLabel = new System.Windows.Forms.Label();
             this.nombrePersonneLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.quantiteIngredientNumericUpDown9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quantiteIngredientNumericUpDown8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quantiteIngredientNumericUpDown7)).BeginInit();
@@ -114,6 +115,7 @@
             this.trouverButton.TabIndex = 171;
             this.trouverButton.Text = "Trouver";
             this.trouverButton.UseVisualStyleBackColor = true;
+            this.trouverButton.Click += new System.EventHandler(this.trouverButton_Click);
             // 
             // difficulteComboBox
             // 
@@ -277,6 +279,7 @@
             this.typeIngredientComboBox9.Name = "typeIngredientComboBox9";
             this.typeIngredientComboBox9.Size = new System.Drawing.Size(134, 21);
             this.typeIngredientComboBox9.TabIndex = 153;
+            this.typeIngredientComboBox9.SelectedIndexChanged += new System.EventHandler(this.typeIngredientComboBox9_SelectedIndexChanged);
             // 
             // quantiteIngredientNumericUpDown8
             // 
@@ -309,6 +312,7 @@
             this.typeIngredientComboBox8.Name = "typeIngredientComboBox8";
             this.typeIngredientComboBox8.Size = new System.Drawing.Size(134, 21);
             this.typeIngredientComboBox8.TabIndex = 150;
+            this.typeIngredientComboBox8.SelectedIndexChanged += new System.EventHandler(this.typeIngredientComboBox8_SelectedIndexChanged);
             // 
             // quantiteIngredientNumericUpDown7
             // 
@@ -341,6 +345,7 @@
             this.typeIngredientComboBox7.Name = "typeIngredientComboBox7";
             this.typeIngredientComboBox7.Size = new System.Drawing.Size(134, 21);
             this.typeIngredientComboBox7.TabIndex = 147;
+            this.typeIngredientComboBox7.SelectedIndexChanged += new System.EventHandler(this.typeIngredientComboBox7_SelectedIndexChanged);
             // 
             // quantiteIngredientNumericUpDown6
             // 
@@ -373,6 +378,7 @@
             this.typeIngredientComboBox6.Name = "typeIngredientComboBox6";
             this.typeIngredientComboBox6.Size = new System.Drawing.Size(134, 21);
             this.typeIngredientComboBox6.TabIndex = 144;
+            this.typeIngredientComboBox6.SelectedIndexChanged += new System.EventHandler(this.typeIngredientComboBox6_SelectedIndexChanged);
             // 
             // quantiteIngredientNumericUpDown5
             // 
@@ -405,6 +411,7 @@
             this.typeIngredientComboBox5.Name = "typeIngredientComboBox5";
             this.typeIngredientComboBox5.Size = new System.Drawing.Size(134, 21);
             this.typeIngredientComboBox5.TabIndex = 141;
+            this.typeIngredientComboBox5.SelectedIndexChanged += new System.EventHandler(this.typeIngredientComboBox5_SelectedIndexChanged);
             // 
             // quantiteIngredientNumericUpDown4
             // 
@@ -437,6 +444,7 @@
             this.typeIngredientComboBox4.Name = "typeIngredientComboBox4";
             this.typeIngredientComboBox4.Size = new System.Drawing.Size(134, 21);
             this.typeIngredientComboBox4.TabIndex = 138;
+            this.typeIngredientComboBox4.SelectedIndexChanged += new System.EventHandler(this.typeIngredientComboBox4_SelectedIndexChanged);
             // 
             // quantiteIngredientNumericUpDown3
             // 
@@ -469,6 +477,7 @@
             this.typeIngredientComboBox3.Name = "typeIngredientComboBox3";
             this.typeIngredientComboBox3.Size = new System.Drawing.Size(134, 21);
             this.typeIngredientComboBox3.TabIndex = 135;
+            this.typeIngredientComboBox3.SelectedIndexChanged += new System.EventHandler(this.typeIngredientComboBox3_SelectedIndexChanged);
             // 
             // quantiteIngredientNumericUpDown2
             // 
@@ -501,6 +510,7 @@
             this.typeIngredientComboBox2.Name = "typeIngredientComboBox2";
             this.typeIngredientComboBox2.Size = new System.Drawing.Size(134, 21);
             this.typeIngredientComboBox2.TabIndex = 132;
+            this.typeIngredientComboBox2.SelectedIndexChanged += new System.EventHandler(this.typeIngredientComboBox2_SelectedIndexChanged);
             // 
             // quantiteIngredientLabel
             // 
@@ -575,7 +585,6 @@
             this.typeRepasComboBox1.Name = "typeRepasComboBox1";
             this.typeRepasComboBox1.Size = new System.Drawing.Size(179, 21);
             this.typeRepasComboBox1.TabIndex = 124;
-            this.typeRepasComboBox1.SelectedIndexChanged += new System.EventHandler(this.typeRepasComboBox1_SelectedIndexChanged);
             // 
             // typeRepas2CheckBox
             // 
@@ -646,10 +655,20 @@
             this.nombrePersonneLabel.TabIndex = 117;
             this.nombrePersonneLabel.Text = "Nombre de personne";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(383, 17);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 173;
+            this.label1.Text = "label1";
+            // 
             // NouveauRepas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.recommencerButton);
             this.Controls.Add(this.trouverButton);
             this.Controls.Add(this.difficulteComboBox);
@@ -781,5 +800,6 @@
         private System.Windows.Forms.NumericUpDown nombrePersonneNumericUpDown1;
         private System.Windows.Forms.Label IdeeLabel;
         private System.Windows.Forms.Label nombrePersonneLabel;
+        private System.Windows.Forms.Label label1;
     }
 }

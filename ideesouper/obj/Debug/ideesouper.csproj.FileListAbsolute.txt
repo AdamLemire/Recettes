@@ -21,3 +21,16 @@ X:\SMI1002-BD2\devoir\ideesouper\repasBD\ideesouper\obj\Debug\ideesouper.csproj.
 X:\SMI1002-BD2\devoir\ideesouper\repasBD\ideesouper\obj\Debug\ideesouper.ViewController.Controls.NouveauRepas.resources
 X:\SMI1002-BD2\devoir\ideesouper\repasBD\ideesouper\obj\Debug\ideesouper.NouvelleRecetteControl.resources
 X:\SMI1002-BD2\devoir\ideesouper\repasBD\ideesouper\obj\Debug\ideesouper.ViewController.Controls.AjoutIngredientControl.resources
+X:\SMI1002-BD2\devoir\Recettes\ideesouper\bin\Debug\ideesouper.exe.config
+X:\SMI1002-BD2\devoir\Recettes\ideesouper\obj\Debug\ideesouper.exe
+X:\SMI1002-BD2\devoir\Recettes\ideesouper\obj\Debug\ideesouper.pdb
+X:\SMI1002-BD2\devoir\Recettes\ideesouper\bin\Debug\ideesouper.exe
+X:\SMI1002-BD2\devoir\Recettes\ideesouper\bin\Debug\ideesouper.pdb
+X:\SMI1002-BD2\devoir\Recettes\ideesouper\obj\Debug\ideesouper.csprojResolveAssemblyReference.cache
+X:\SMI1002-BD2\devoir\Recettes\ideesouper\obj\Debug\ideesouper.ViewController.Controls.AjoutIngredientControl.resources
+X:\SMI1002-BD2\devoir\Recettes\ideesouper\obj\Debug\ideesouper.ViewController.Controls.NouveauRepas.resources
+X:\SMI1002-BD2\devoir\Recettes\ideesouper\obj\Debug\ideesouper.NouvelleRecetteControl.resources
+X:\SMI1002-BD2\devoir\Recettes\ideesouper\obj\Debug\ideesouper.Form1.resources
+X:\SMI1002-BD2\devoir\Recettes\ideesouper\obj\Debug\ideesouper.Properties.Resources.resources
+X:\SMI1002-BD2\devoir\Recettes\ideesouper\obj\Debug\ideesouper.RecetteControl.resources
+X:\SMI1002-BD2\devoir\Recettes\ideesouper\obj\Debug\ideesouper.csproj.GenerateResource.Cache
