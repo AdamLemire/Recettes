@@ -9,11 +9,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ideesouper.ViewController;
+using ideesouper.ViewController.Controls;
 
 namespace ideesouper
 {
     public partial class Form1 : Form
     {
+        public int recetteTrouveePosition;
+
         //InterfaceBD interfaceBD = new InterfaceBD("neptune.uqtr.ca", "1521", "coursbd", "SMI1002_25", "98rghc88");
 
         //OracleParameter[] collection = {
@@ -31,14 +35,8 @@ namespace ideesouper
             //interfaceBD.appelerProcedureStockee("multiplicateur", collection);
 
             InitializeComponent();
-            // nouvelleRecettePanel.Hide();
-            //ideePanel.Show();
-            //OracleDataReader lecteur = interfaceBD.envoyerRequeteSelection("SELECT DISTINCT CATEGORIE FROM INGREDIENT");
-            //while (lecteur.Read())
-            //{
-            //    typeIngredientComboBox1.Items.Add(lecteur.GetValue(0));
-            //}
-
+            suivanteButton.Enabled = false;
+            precedenteButton.Enabled = false;
         }
 
         private void nouvelleRecetteToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -72,7 +70,78 @@ namespace ideesouper
 
         }
 
+        private void suivanteButton_Click(object sender, EventArgs e)
+        {
+            recetteTrouveePosition++;
+            recetteControl1.AfficheRecette(Convert.ToInt32(nouveauRepas1.idRecettesTrouvees[recetteTrouveePosition]));
+            VerifierPosition();
+        }
+
+        private void precedenteButton_Click(object sender, EventArgs e)
+        {
+            recetteTrouveePosition--;
+            recetteControl1.AfficheRecette(Convert.ToInt32(nouveauRepas1.idRecettesTrouvees[recetteTrouveePosition]));
+            VerifierPosition();
+        }
+
+        public void ResetRecherche()
+        {
+            recetteControl1.AssignDefautList();
+            Utilities.ResetAllControls(nouveauRepas1);
+            nouveauRepas1.idRecettesTrouvees.Clear();
+            recetteTrouveePosition = -1;
+            VerifierPosition();
+        }
+        private void VerifierPosition()
+        {
+            if (recetteTrouveePosition == - 1)
+            {
+                suivanteButton.Enabled = false;
+                precedenteButton.Enabled = false;
+            }
+            else if (recetteTrouveePosition == nouveauRepas1.idRecettesTrouvees.Count - 1)
+            {
+                suivanteButton.Enabled = false;
+            }
+            else
+            {
+                suivanteButton.Enabled = true;
+            }
+            if (recetteTrouveePosition > 0)
+            {
+                precedenteButton.Enabled = true;
+            }
+            else if (recetteTrouveePosition == 0)
+            {
+                precedenteButton.Enabled = false;
+            }
+        }
+
+        private void annuler_Click(object sender, EventArgs e)
+        {
+            ResetRecherche();
+        }
 
 
+        private void trouver_Click(object sender, EventArgs e)
+        {
+            nouveauRepas1.ChercheRecettes();
+
+            if (nouveauRepas1.idRecettesTrouvees.Count > 1)
+            {
+                recetteControl1.AfficheRecette(Convert.ToInt32(nouveauRepas1.idRecettesTrouvees[0]));
+                recetteTrouveePosition = 0;
+                VerifierNavigationRecette();
+            }
+
+        }
+
+        public void VerifierNavigationRecette()
+        {
+            if (nouveauRepas1.idRecettesTrouvees.Count > 1)
+                suivanteButton.Enabled = true;
+        }
+
+       
     }
 }

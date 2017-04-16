@@ -30,7 +30,6 @@
         {
             this.nomRecetteLabel = new System.Windows.Forms.Label();
             this.EtapeRecetteTextBox = new System.Windows.Forms.TextBox();
-            this.IngredientsRecetteListBox = new System.Windows.Forms.ListBox();
             this.difficulteLabel = new System.Windows.Forms.Label();
             this.tempsCuissonLabel = new System.Windows.Forms.Label();
             this.tempsPreparationLabel = new System.Windows.Forms.Label();
@@ -41,6 +40,7 @@
             this.tempsCuissonValeurLabel = new System.Windows.Forms.Label();
             this.typeRepasValeurLabel = new System.Windows.Forms.Label();
             this.difficulteValeurLabel = new System.Windows.Forms.Label();
+            this.ingredientsListView = new System.Windows.Forms.ListView();
             this.SuspendLayout();
             // 
             // nomRecetteLabel
@@ -63,14 +63,6 @@
             this.EtapeRecetteTextBox.Size = new System.Drawing.Size(407, 300);
             this.EtapeRecetteTextBox.TabIndex = 119;
             this.EtapeRecetteTextBox.Text = "Étapes";
-            // 
-            // IngredientsRecetteListBox
-            // 
-            this.IngredientsRecetteListBox.FormattingEnabled = true;
-            this.IngredientsRecetteListBox.Location = new System.Drawing.Point(14, 100);
-            this.IngredientsRecetteListBox.Name = "IngredientsRecetteListBox";
-            this.IngredientsRecetteListBox.Size = new System.Drawing.Size(407, 160);
-            this.IngredientsRecetteListBox.TabIndex = 118;
             // 
             // difficulteLabel
             // 
@@ -162,10 +154,19 @@
             this.difficulteValeurLabel.TabIndex = 130;
             this.difficulteValeurLabel.Text = "difficulté";
             // 
+            // ingredientsListView
+            // 
+            this.ingredientsListView.Location = new System.Drawing.Point(14, 100);
+            this.ingredientsListView.Name = "ingredientsListView";
+            this.ingredientsListView.Size = new System.Drawing.Size(407, 160);
+            this.ingredientsListView.TabIndex = 131;
+            this.ingredientsListView.UseCompatibleStateImageBehavior = false;
+            // 
             // RecetteControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.ingredientsListView);
             this.Controls.Add(this.difficulteValeurLabel);
             this.Controls.Add(this.typeRepasValeurLabel);
             this.Controls.Add(this.tempsCuissonValeurLabel);
@@ -178,7 +179,6 @@
             this.Controls.Add(this.nombrePersonneLabel);
             this.Controls.Add(this.nomRecetteLabel);
             this.Controls.Add(this.EtapeRecetteTextBox);
-            this.Controls.Add(this.IngredientsRecetteListBox);
             this.Name = "RecetteControl";
             this.Size = new System.Drawing.Size(442, 569);
             this.ResumeLayout(false);
@@ -190,7 +190,6 @@
 
         private System.Windows.Forms.Label nomRecetteLabel;
         private System.Windows.Forms.TextBox EtapeRecetteTextBox;
-        private System.Windows.Forms.ListBox IngredientsRecetteListBox;
         private System.Windows.Forms.Label difficulteLabel;
         private System.Windows.Forms.Label tempsCuissonLabel;
         private System.Windows.Forms.Label tempsPreparationLabel;
@@ -201,5 +200,6 @@
         private System.Windows.Forms.Label tempsCuissonValeurLabel;
         private System.Windows.Forms.Label typeRepasValeurLabel;
         private System.Windows.Forms.Label difficulteValeurLabel;
+        private System.Windows.Forms.ListView ingredientsListView;
     }
 }

@@ -56,6 +56,5 @@ namespace ideesouper
         {
             Utilities.ResetAllControls(this);
         }
-
     }
 }
