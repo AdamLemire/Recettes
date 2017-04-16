@@ -30,6 +30,7 @@ namespace ideesouper.ViewController.Controls
             {
                 typeComboBox.Items.Add(vuesTypeIngredient.GetValue(0));
             }
+            
         }
 
         private void cancelClick(object sender, EventArgs e)
