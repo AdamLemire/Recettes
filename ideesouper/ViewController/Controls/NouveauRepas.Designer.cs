@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.recommencerButton = new System.Windows.Forms.Button();
-            this.trouverButton = new System.Windows.Forms.Button();
             this.difficulteComboBox = new System.Windows.Forms.ComboBox();
             this.difficulteLabel = new System.Windows.Forms.Label();
             this.temps6Label = new System.Windows.Forms.Label();
@@ -84,7 +82,6 @@
             this.nombrePersonneNumericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.IdeeLabel = new System.Windows.Forms.Label();
             this.nombrePersonneLabel = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.quantiteIngredientNumericUpDown9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quantiteIngredientNumericUpDown8)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.quantiteIngredientNumericUpDown7)).BeginInit();
@@ -96,26 +93,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.quantiteIngredientNumericUpDown1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nombrePersonneNumericUpDown1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // recommencerButton
-            // 
-            this.recommencerButton.Location = new System.Drawing.Point(8, 508);
-            this.recommencerButton.Name = "recommencerButton";
-            this.recommencerButton.Size = new System.Drawing.Size(156, 23);
-            this.recommencerButton.TabIndex = 172;
-            this.recommencerButton.Text = "Recommencer";
-            this.recommencerButton.UseVisualStyleBackColor = true;
-            this.recommencerButton.Click += new System.EventHandler(this.recommencerButton_Click);
-            // 
-            // trouverButton
-            // 
-            this.trouverButton.Location = new System.Drawing.Point(269, 508);
-            this.trouverButton.Name = "trouverButton";
-            this.trouverButton.Size = new System.Drawing.Size(156, 23);
-            this.trouverButton.TabIndex = 171;
-            this.trouverButton.Text = "Trouver";
-            this.trouverButton.UseVisualStyleBackColor = true;
-            this.trouverButton.Click += new System.EventHandler(this.trouverButton_Click);
             // 
             // difficulteComboBox
             // 
@@ -589,6 +566,7 @@
             // typeRepas2CheckBox
             // 
             this.typeRepas2CheckBox.AutoSize = true;
+            this.typeRepas2CheckBox.Enabled = false;
             this.typeRepas2CheckBox.Location = new System.Drawing.Point(101, 103);
             this.typeRepas2CheckBox.Name = "typeRepas2CheckBox";
             this.typeRepas2CheckBox.Size = new System.Drawing.Size(15, 14);
@@ -655,22 +633,10 @@
             this.nombrePersonneLabel.TabIndex = 117;
             this.nombrePersonneLabel.Text = "Nombre de personne";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(383, 17);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
-            this.label1.TabIndex = 173;
-            this.label1.Text = "label1";
-            // 
             // NouveauRepas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.recommencerButton);
-            this.Controls.Add(this.trouverButton);
             this.Controls.Add(this.difficulteComboBox);
             this.Controls.Add(this.difficulteLabel);
             this.Controls.Add(this.temps6Label);
@@ -726,7 +692,7 @@
             this.Controls.Add(this.IdeeLabel);
             this.Controls.Add(this.nombrePersonneLabel);
             this.Name = "NouveauRepas";
-            this.Size = new System.Drawing.Size(434, 536);
+            this.Size = new System.Drawing.Size(434, 514);
             ((System.ComponentModel.ISupportInitialize)(this.quantiteIngredientNumericUpDown9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.quantiteIngredientNumericUpDown8)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.quantiteIngredientNumericUpDown7)).EndInit();
@@ -743,9 +709,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button recommencerButton;
-        private System.Windows.Forms.Button trouverButton;
         private System.Windows.Forms.ComboBox difficulteComboBox;
         private System.Windows.Forms.Label difficulteLabel;
         private System.Windows.Forms.Label temps6Label;
@@ -800,6 +763,5 @@
         private System.Windows.Forms.NumericUpDown nombrePersonneNumericUpDown1;
         private System.Windows.Forms.Label IdeeLabel;
         private System.Windows.Forms.Label nombrePersonneLabel;
-        private System.Windows.Forms.Label label1;
     }
 }

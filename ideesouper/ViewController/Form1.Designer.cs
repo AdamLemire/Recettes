@@ -42,7 +42,11 @@
             this.nouvelIngrédientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.catalogueToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.ideePanel = new System.Windows.Forms.Panel();
+            this.recherchePanel = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.nouveauRepas1 = new ideesouper.ViewController.Controls.NouveauRepas();
+            this.recetteResultatPanel = new System.Windows.Forms.Panel();
             this.recetteControl1 = new ideesouper.RecetteControl();
             this.suivanteButton = new System.Windows.Forms.Button();
             this.precedenteButton = new System.Windows.Forms.Button();
@@ -50,6 +54,8 @@
             this.nouvelleRecetteControl1 = new ideesouper.NouvelleRecetteControl();
             this.menuStrip.SuspendLayout();
             this.ideePanel.SuspendLayout();
+            this.recherchePanel.SuspendLayout();
+            this.recetteResultatPanel.SuspendLayout();
             this.nouvelleRecettePanel.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -154,8 +160,8 @@
             // 
             // ideePanel
             // 
-            this.ideePanel.Controls.Add(this.nouveauRepas1);
-            this.ideePanel.Controls.Add(this.recetteControl1);
+            this.ideePanel.Controls.Add(this.recherchePanel);
+            this.ideePanel.Controls.Add(this.recetteResultatPanel);
             this.ideePanel.Controls.Add(this.suivanteButton);
             this.ideePanel.Controls.Add(this.precedenteButton);
             this.ideePanel.Location = new System.Drawing.Point(0, 27);
@@ -164,18 +170,56 @@
             this.ideePanel.TabIndex = 58;
             this.ideePanel.Paint += new System.Windows.Forms.PaintEventHandler(this.ideePanel_Paint);
             // 
+            // recherchePanel
+            // 
+            this.recherchePanel.Controls.Add(this.button1);
+            this.recherchePanel.Controls.Add(this.button2);
+            this.recherchePanel.Controls.Add(this.nouveauRepas1);
+            this.recherchePanel.Location = new System.Drawing.Point(4, 1);
+            this.recherchePanel.Name = "recherchePanel";
+            this.recherchePanel.Size = new System.Drawing.Size(469, 560);
+            this.recherchePanel.TabIndex = 123;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(8, 513);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(156, 23);
+            this.button1.TabIndex = 122;
+            this.button1.Text = "Recommencer";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.annuler_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(271, 513);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(151, 23);
+            this.button2.TabIndex = 124;
+            this.button2.Text = "Trouver";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.trouver_Click);
+            // 
             // nouveauRepas1
             // 
-            this.nouveauRepas1.Location = new System.Drawing.Point(23, 12);
+            this.nouveauRepas1.Location = new System.Drawing.Point(0, 0);
             this.nouveauRepas1.Name = "nouveauRepas1";
-            this.nouveauRepas1.Size = new System.Drawing.Size(434, 536);
+            this.nouveauRepas1.Size = new System.Drawing.Size(434, 507);
             this.nouveauRepas1.TabIndex = 121;
+            // 
+            // recetteResultatPanel
+            // 
+            this.recetteResultatPanel.Controls.Add(this.recetteControl1);
+            this.recetteResultatPanel.Location = new System.Drawing.Point(479, 0);
+            this.recetteResultatPanel.Name = "recetteResultatPanel";
+            this.recetteResultatPanel.Size = new System.Drawing.Size(452, 578);
+            this.recetteResultatPanel.TabIndex = 122;
             // 
             // recetteControl1
             // 
-            this.recetteControl1.Location = new System.Drawing.Point(485, 3);
+            this.recetteControl1.Location = new System.Drawing.Point(0, 0);
             this.recetteControl1.Name = "recetteControl1";
-            this.recetteControl1.Size = new System.Drawing.Size(442, 575);
+            this.recetteControl1.Size = new System.Drawing.Size(442, 619);
             this.recetteControl1.TabIndex = 120;
             // 
             // suivanteButton
@@ -186,6 +230,7 @@
             this.suivanteButton.TabIndex = 119;
             this.suivanteButton.Text = "Suivante";
             this.suivanteButton.UseVisualStyleBackColor = true;
+            this.suivanteButton.Click += new System.EventHandler(this.suivanteButton_Click);
             // 
             // precedenteButton
             // 
@@ -195,6 +240,7 @@
             this.precedenteButton.TabIndex = 118;
             this.precedenteButton.Text = "Précédente";
             this.precedenteButton.UseVisualStyleBackColor = true;
+            this.precedenteButton.Click += new System.EventHandler(this.precedenteButton_Click);
             // 
             // nouvelleRecettePanel
             // 
@@ -226,6 +272,8 @@
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.ideePanel.ResumeLayout(false);
+            this.recherchePanel.ResumeLayout(false);
+            this.recetteResultatPanel.ResumeLayout(false);
             this.nouvelleRecettePanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -253,6 +301,10 @@
         private ViewController.Controls.NouveauRepas nouveauRepas1;
         private System.Windows.Forms.Panel nouvelleRecettePanel;
         private NouvelleRecetteControl nouvelleRecetteControl1;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel recetteResultatPanel;
+        private System.Windows.Forms.Panel recherchePanel;
+        private System.Windows.Forms.Button button2;
     }
 }
 

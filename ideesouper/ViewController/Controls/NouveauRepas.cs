@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ideesouper.ViewController;
 
 namespace ideesouper.ViewController.Controls
 {
@@ -15,15 +16,15 @@ namespace ideesouper.ViewController.Controls
     {
         public List<double> idRecettesTrouvees = new List<double>();
 
-        InterfaceBD interfaceBD = new InterfaceBD("neptune.uqtr.ca", "1521", "coursbd", "SMI1002_25", "98rghc88");
+        InterfaceBD interfaceBD = new InterfaceBD(Utilities.URL, Utilities.PORT, Utilities.SCHEMA, Utilities.USERNAME, Utilities.PASSWORD);
 
-        OracleParameter[] collection = {
+       /* OracleParameter[] collection = {
                     new OracleParameter("a", OracleType.Number, 0, System.Data.ParameterDirection.Input, null, System.Data.DataRowVersion.Default, true, 3),
 
                     new OracleParameter("facteur", OracleType.Number, 0, System.Data.ParameterDirection.Input, null, System.Data.DataRowVersion.Default, true, 5),
 
                     new OracleParameter("c", OracleType.Number, 0, System.Data.ParameterDirection.Output, null, System.Data.DataRowVersion.Default, true, 0)
-                };
+                };*/
         public NouveauRepas()
         {
             interfaceBD.ouvrirConnexion();
@@ -75,11 +76,6 @@ namespace ideesouper.ViewController.Controls
             }
         }
 
-        private void recommencerButton_Click(object sender, EventArgs e)
-        {
-            Utilities.ResetAllControls(this);
-            lockIngredient();
-        }
 
         private void typeRepas2CheckBox_CheckedChanged(object sender, EventArgs e)
         {
@@ -156,7 +152,7 @@ namespace ideesouper.ViewController.Controls
             quantiteIngredientNumericUpDown9.Enabled = true;
         }
 
-        private void lockIngredient()
+        private void LockIngredient()
         {
             typeIngredientComboBox2.Enabled = false;
             typeIngredientComboBox3.Enabled = false;
@@ -184,27 +180,32 @@ namespace ideesouper.ViewController.Controls
             quantiteIngredientNumericUpDown9.Enabled = false;
         }
 
-        private void trouverButton_Click(object sender, EventArgs e)
+
+        public void ChercheRecettes()
         {
             valeurDefautRecherche();
             idRecettesTrouvees.Clear();
-            OracleDataReader rechercheRecette = interfaceBD.envoyerRequeteSelection("SELECT RECETTE_ID FROM RECETTE WHERE TEMPS_CUISSON >='"+ Convert.ToInt32(tempsCuissonDebutComboBox.SelectedItem)+"'");
+            OracleDataReader rechercheRecette = interfaceBD.envoyerRequeteSelection("(SELECT RECETTE.RECETTE_ID FROM RECETTE " +
+                                                                                    "WHERE " +
+                                                                                    "TEMPS_CUISSON >='" + Convert.ToInt32(tempsCuissonDebutComboBox.Text) +
+                                                                                    "' AND TEMPS_CUISSON <='" + Convert.ToInt32(tempsCuissonFinComboBox.Text) +
+                                                                                    "' AND TEMPS_PREPARATION >='" + Convert.ToInt32(tempsPrepDebutComboBox.Text) +
+                                                                                    "' AND TEMPS_PREPARATION <='" + Convert.ToInt32(tempsPrepFinComboBox.Text) +
+                                                                                    "' AND TYPE_RECETTE = '" + typeRepasComboBox1.Text +
+                                                                                    "') INTERSECT " +
+                                                                                    "(SELECT RECETTE_INGREDIENT.RECETTE_ID FROM RECETTE_INGREDIENT INNER JOIN INGREDIENT ON RECETTE_INGREDIENT.INGREDIENT_ID = INGREDIENT.INGREDIENT_ID WHERE INGREDIENT.NOM = '" + nomIngredientComboBox1.Text+"')" 
+                                                                                     );
+                                                                                       
             while (rechercheRecette.Read())
             {
-               idRecettesTrouvees.Add(rechercheRecette.GetDouble(0));
-            }
-            if (idRecettesTrouvees.Count > 1)
-                label1.Text = idRecettesTrouvees[0].ToString();
-            else
-            {
-                label1.Text = "rien";
-            }
+                idRecettesTrouvees.Add(rechercheRecette.GetDouble(0));
+            }           
         }
 
         private void typeIngredientComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             nomIngredientComboBox1.Items.Clear();
-            OracleDataReader vuesIngredients = interfaceBD.envoyerRequeteSelection("SELECT NOM FROM INGREDIENT WHERE CATEGORIE ='" + typeIngredientComboBox1.Text + "' ORDER BY NOM ASC");
+            OracleDataReader vuesIngredients = interfaceBD.envoyerRequeteSelection("SELECT DISTINCT NOM FROM INGREDIENT WHERE CATEGORIE ='" + typeIngredientComboBox1.Text + "' ORDER BY NOM ASC");
             while (vuesIngredients.Read())
             {
                 nomIngredientComboBox1.Items.Add(vuesIngredients.GetValue(0));
@@ -214,7 +215,7 @@ namespace ideesouper.ViewController.Controls
         private void typeIngredientComboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             nomIngredientComboBox2.Items.Clear();
-            OracleDataReader vuesIngredients = interfaceBD.envoyerRequeteSelection("SELECT NOM FROM INGREDIENT WHERE CATEGORIE ='" + typeIngredientComboBox2.Text + "' ORDER BY NOM ASC");
+            OracleDataReader vuesIngredients = interfaceBD.envoyerRequeteSelection("SELECT DISTINCT NOM FROM INGREDIENT WHERE CATEGORIE ='" + typeIngredientComboBox2.Text + "' ORDER BY NOM ASC");
             while (vuesIngredients.Read())
             {
                 nomIngredientComboBox2.Items.Add(vuesIngredients.GetValue(0));
@@ -224,7 +225,7 @@ namespace ideesouper.ViewController.Controls
         private void typeIngredientComboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
             nomIngredientComboBox3.Items.Clear();
-            OracleDataReader vuesIngredients = interfaceBD.envoyerRequeteSelection("SELECT NOM FROM INGREDIENT WHERE CATEGORIE ='" + typeIngredientComboBox3.Text + "' ORDER BY NOM ASC");
+            OracleDataReader vuesIngredients = interfaceBD.envoyerRequeteSelection("SELECT DISTINCT NOM FROM INGREDIENT WHERE CATEGORIE ='" + typeIngredientComboBox3.Text + "' ORDER BY NOM ASC");
             while (vuesIngredients.Read())
             {
                 nomIngredientComboBox3.Items.Add(vuesIngredients.GetValue(0));
@@ -234,7 +235,7 @@ namespace ideesouper.ViewController.Controls
         private void typeIngredientComboBox4_SelectedIndexChanged(object sender, EventArgs e)
         {
             nomIngredientComboBox4.Items.Clear();
-            OracleDataReader vuesIngredients = interfaceBD.envoyerRequeteSelection("SELECT NOM FROM INGREDIENT WHERE CATEGORIE ='" + typeIngredientComboBox4.Text + "' ORDER BY NOM ASC");
+            OracleDataReader vuesIngredients = interfaceBD.envoyerRequeteSelection("SELECT DISTINCT NOM FROM INGREDIENT WHERE CATEGORIE ='" + typeIngredientComboBox4.Text + "' ORDER BY NOM ASC");
             while (vuesIngredients.Read())
             {
                 nomIngredientComboBox4.Items.Add(vuesIngredients.GetValue(0));
@@ -244,7 +245,7 @@ namespace ideesouper.ViewController.Controls
         private void typeIngredientComboBox5_SelectedIndexChanged(object sender, EventArgs e)
         {
             nomIngredientComboBox5.Items.Clear();
-            OracleDataReader vuesIngredients = interfaceBD.envoyerRequeteSelection("SELECT NOM FROM INGREDIENT WHERE CATEGORIE ='" + typeIngredientComboBox5.Text + "' ORDER BY NOM ASC");
+            OracleDataReader vuesIngredients = interfaceBD.envoyerRequeteSelection("SELECT NOM DISTINCT FROM INGREDIENT WHERE CATEGORIE ='" + typeIngredientComboBox5.Text + "' ORDER BY NOM ASC");
             while (vuesIngredients.Read())
             {
                 nomIngredientComboBox5.Items.Add(vuesIngredients.GetValue(0));
@@ -254,7 +255,7 @@ namespace ideesouper.ViewController.Controls
         private void typeIngredientComboBox6_SelectedIndexChanged(object sender, EventArgs e)
         {
             nomIngredientComboBox6.Items.Clear();
-            OracleDataReader vuesIngredients = interfaceBD.envoyerRequeteSelection("SELECT NOM FROM INGREDIENT WHERE CATEGORIE ='" + typeIngredientComboBox6.Text + "' ORDER BY NOM ASC");
+            OracleDataReader vuesIngredients = interfaceBD.envoyerRequeteSelection("SELECT NOM DISTINCT FROM INGREDIENT WHERE CATEGORIE ='" + typeIngredientComboBox6.Text + "' ORDER BY NOM ASC");
             while (vuesIngredients.Read())
             {
                 nomIngredientComboBox6.Items.Add(vuesIngredients.GetValue(0));
@@ -264,7 +265,7 @@ namespace ideesouper.ViewController.Controls
         private void typeIngredientComboBox7_SelectedIndexChanged(object sender, EventArgs e)
         {
             nomIngredientComboBox7.Items.Clear();
-            OracleDataReader vuesIngredients = interfaceBD.envoyerRequeteSelection("SELECT NOM FROM INGREDIENT WHERE CATEGORIE ='" + typeIngredientComboBox7.Text + "' ORDER BY NOM ASC");
+            OracleDataReader vuesIngredients = interfaceBD.envoyerRequeteSelection("SELECT NOM DISTINCT FROM INGREDIENT WHERE CATEGORIE ='" + typeIngredientComboBox7.Text + "' ORDER BY NOM ASC");
             while (vuesIngredients.Read())
             {
                 nomIngredientComboBox7.Items.Add(vuesIngredients.GetValue(0));
@@ -274,7 +275,7 @@ namespace ideesouper.ViewController.Controls
         private void typeIngredientComboBox8_SelectedIndexChanged(object sender, EventArgs e)
         {
             nomIngredientComboBox8.Items.Clear();
-            OracleDataReader vuesIngredients = interfaceBD.envoyerRequeteSelection("SELECT NOM FROM INGREDIENT WHERE CATEGORIE ='" + typeIngredientComboBox8.Text + "' ORDER BY NOM ASC");
+            OracleDataReader vuesIngredients = interfaceBD.envoyerRequeteSelection("SELECT NOM DISTINCT FROM INGREDIENT WHERE CATEGORIE ='" + typeIngredientComboBox8.Text + "' ORDER BY NOM ASC");
             while (vuesIngredients.Read())
             {
                 nomIngredientComboBox8.Items.Add(vuesIngredients.GetValue(0));
@@ -284,7 +285,7 @@ namespace ideesouper.ViewController.Controls
         private void typeIngredientComboBox9_SelectedIndexChanged(object sender, EventArgs e)
         {
             nomIngredientComboBox9.Items.Clear();
-            OracleDataReader vuesIngredients = interfaceBD.envoyerRequeteSelection("SELECT NOM FROM INGREDIENT WHERE CATEGORIE ='" + typeIngredientComboBox9.Text + "' ORDER BY NOM ASC");
+            OracleDataReader vuesIngredients = interfaceBD.envoyerRequeteSelection("SELECT NOM DISTINCT FROM INGREDIENT WHERE CATEGORIE ='" + typeIngredientComboBox9.Text + "' ORDER BY NOM ASC");
             while (vuesIngredients.Read())
             {
                 nomIngredientComboBox9.Items.Add(vuesIngredients.GetValue(0));
@@ -295,13 +296,23 @@ namespace ideesouper.ViewController.Controls
         {
             foreach (Control control in this.Controls)
             {
-                if (control is ComboBox && control.Name == "tempsCuissonDebutComboBox" || control.Name == "tempsCuissonFinComboBox" )
+                if (control is ComboBox && (control.Name == "tempsCuissonDebutComboBox" || control.Name == "tempsPrepDebutComboBox" ||
+                    control.Name == "typeRepasComboBox1") )
+
                 {
-                    
                     ComboBox comboBox = (ComboBox)control;
                     if (comboBox.SelectedIndex == -1)
                     {
-                        comboBox.SelectedIndex = 1;
+                        comboBox.SelectedIndex = 0;
+                    }
+                }
+                else if (control is ComboBox && (control.Name == "tempsCuissonFinComboBox" ||
+                         control.Name == "tempsPrepFinComboBox"))
+                {
+                    ComboBox comboBox = (ComboBox)control;
+                    if (comboBox.SelectedIndex == -1)
+                    {
+                        comboBox.SelectedIndex = comboBox.Items.Count - 1;
                     }
                 }
             }

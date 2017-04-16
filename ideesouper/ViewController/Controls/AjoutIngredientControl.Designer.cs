@@ -56,6 +56,7 @@
             this.typeComboBox.Size = new System.Drawing.Size(168, 21);
             this.typeComboBox.TabIndex = 1;
             this.typeComboBox.Text = "Catégorie";
+            this.typeComboBox.SelectedIndexChanged += new System.EventHandler(this.typeComboBox_SelectedIndexChanged);
             // 
             // ingredientComboBox
             // 

@@ -9,6 +9,12 @@ namespace ideesouper.ViewController
 {
     class Utilities
     {
+        public static string URL = "neptune.uqtr.ca";
+        public static string PORT = "1521";
+        public static string SCHEMA = "coursbd";
+        public static string USERNAME = "SMI1002_25";
+        public static string PASSWORD = "98rghc88";
+
 
         public static void ResetAllControls(Control form)
         {

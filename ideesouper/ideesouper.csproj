@@ -53,6 +53,7 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ViewController\ControlDefaultText.cs" />
     <Compile Include="ViewController\Controls\AjoutIngredientControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
