@@ -118,6 +118,7 @@ namespace ideesouper
             Utilities.ResetAllControls(this);
         }
 
+
         private void buttonSuppIngredient_Click(object sender, EventArgs e)
         {
             if(ingredientsListView.Items.Count > 0 )
@@ -128,5 +129,6 @@ namespace ideesouper
         {
             Lock();
         }
+
     }
 }
