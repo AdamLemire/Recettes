@@ -16,12 +16,13 @@ namespace ideesouper
 {
     public partial class NouvelleRecetteControl : UserControl
     {
-        //InterfaceBD interfaceBD = new InterfaceBD("neptune.uqtr.ca", "1521", "coursbd", "SMI1002_25", "98rghc88");
+        InterfaceBD interfaceBD = new InterfaceBD("neptune.uqtr.ca", "1521", "coursbd", "SMI1002_25", "98rghc88");
         [DllImport("user32.dll")]
         private static extern IntPtr SendMessage(IntPtr hWnd, int Msg, int wParam, [MarshalAs(UnmanagedType.LPWStr)] string lParam);
         
         public NouvelleRecetteControl()
         {
+            interfaceBD.ouvrirConnexion();
             InitializeComponent();
             InitializeListView();
             SendMessage(reciepeNameTextBox.Handle, 0x1501, 1, "Nom de la recette");
@@ -45,12 +46,19 @@ namespace ideesouper
             ColumnHeader header2 = ingredientsListView.Columns.Add("Quantité", 10 * Convert.ToInt32(ingredientsListView.Font.SizeInPoints), HorizontalAlignment.Center);
             ColumnHeader header3 = ingredientsListView.Columns.Add("Supprimer", 10 * Convert.ToInt32(ingredientsListView.Font.SizeInPoints), HorizontalAlignment.Center);
 
-            /*OracleDataReader vuesDifficulte = interfaceBD.envoyerRequeteSelection("SELECT * FROM DIFFICULTE_VIEW");
+            OracleDataReader vuesDifficulte = interfaceBD.envoyerRequeteSelection("SELECT * FROM DIFFICULTE_VIEW");
             while (vuesDifficulte.Read())
             {
                 comboBox2.Items.Add(vuesDifficulte.GetValue(0));
-            }*/
+            }
+
+            OracleDataReader vuesTypeRepas = interfaceBD.envoyerRequeteSelection("SELECT * FROM TYPE_REPAS_VIEW");
+            while (vuesTypeRepas.Read())
+            {
+                comboBox1.Items.Add(vuesTypeRepas.GetValue(0));
+            }
         }
+
 
         private void resetButton_Click(object sender, EventArgs e)
         {
