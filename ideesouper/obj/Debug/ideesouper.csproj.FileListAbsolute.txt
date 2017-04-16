@@ -34,3 +34,16 @@ X:\SMI1002-BD2\devoir\Recettes\ideesouper\obj\Debug\ideesouper.Form1.resources
 X:\SMI1002-BD2\devoir\Recettes\ideesouper\obj\Debug\ideesouper.Properties.Resources.resources
 X:\SMI1002-BD2\devoir\Recettes\ideesouper\obj\Debug\ideesouper.RecetteControl.resources
 X:\SMI1002-BD2\devoir\Recettes\ideesouper\obj\Debug\ideesouper.csproj.GenerateResource.Cache
+C:\Users\petiteau\Documents\GitHub\Recettes\ideesouper\bin\Debug\ideesouper.exe.config
+C:\Users\petiteau\Documents\GitHub\Recettes\ideesouper\obj\Debug\ideesouper.exe
+C:\Users\petiteau\Documents\GitHub\Recettes\ideesouper\obj\Debug\ideesouper.pdb
+C:\Users\petiteau\Documents\GitHub\Recettes\ideesouper\bin\Debug\ideesouper.exe
+C:\Users\petiteau\Documents\GitHub\Recettes\ideesouper\bin\Debug\ideesouper.pdb
+C:\Users\petiteau\Documents\GitHub\Recettes\ideesouper\obj\Debug\ideesouper.csprojResolveAssemblyReference.cache
+C:\Users\petiteau\Documents\GitHub\Recettes\ideesouper\obj\Debug\ideesouper.ViewController.Controls.AjoutIngredientControl.resources
+C:\Users\petiteau\Documents\GitHub\Recettes\ideesouper\obj\Debug\ideesouper.ViewController.Controls.NouveauRepas.resources
+C:\Users\petiteau\Documents\GitHub\Recettes\ideesouper\obj\Debug\ideesouper.NouvelleRecetteControl.resources
+C:\Users\petiteau\Documents\GitHub\Recettes\ideesouper\obj\Debug\ideesouper.Form1.resources
+C:\Users\petiteau\Documents\GitHub\Recettes\ideesouper\obj\Debug\ideesouper.Properties.Resources.resources
+C:\Users\petiteau\Documents\GitHub\Recettes\ideesouper\obj\Debug\ideesouper.RecetteControl.resources
+C:\Users\petiteau\Documents\GitHub\Recettes\ideesouper\obj\Debug\ideesouper.csproj.GenerateResource.Cache
