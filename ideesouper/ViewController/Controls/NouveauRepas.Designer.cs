@@ -96,6 +96,7 @@
             // 
             // difficulteComboBox
             // 
+            this.difficulteComboBox.Enabled = false;
             this.difficulteComboBox.FormattingEnabled = true;
             this.difficulteComboBox.Location = new System.Drawing.Point(151, 178);
             this.difficulteComboBox.Name = "difficulteComboBox";

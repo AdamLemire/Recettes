@@ -86,6 +86,7 @@ namespace ideesouper
             }
         }
 
+        //Requete SQL gérant la concurrence
         public bool envoyerRequete(String requete, ModeVerrou mode, String table_verrouillee)
         {
             try
@@ -117,6 +118,7 @@ namespace ideesouper
             }
         }
 
+        //requete de selection SQL nous renvoyant le résultat
         public OracleDataReader envoyerRequeteSelection(String requete)
         {
             try

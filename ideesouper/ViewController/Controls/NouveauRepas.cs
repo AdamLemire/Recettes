@@ -183,6 +183,58 @@ namespace ideesouper.ViewController.Controls
 
         public void ChercheRecettes()
         {
+            string ingredientsRecherche = ""; //" INTERSECT (SELECT RECETTE_INGREDIENT.RECETTE_ID FROM RECETTE_INGREDIENT WHERE INGREDIENT_ID = '1' OR INGREDIENT_ID = '8' GROUP BY RECETTE_ID HAVING COUNT(DISTINCT INGREDIENT_ID) = 2 )";
+            int nbCombobox = 0;
+            if (nomIngredientComboBox1.Text != "")
+            {
+                ingredientsRecherche = " INTERSECT " +
+                "(SELECT RECETTE_INGREDIENT.RECETTE_ID FROM RECETTE_INGREDIENT INNER JOIN INGREDIENT ON RECETTE_INGREDIENT.INGREDIENT_ID = INGREDIENT.INGREDIENT_ID WHERE INGREDIENT.NOM = '" +
+                nomIngredientComboBox1.Text + "'";
+                nbCombobox++;
+                if (nomIngredientComboBox2.Text != "")
+                {
+                    ingredientsRecherche += " OR INGREDIENT.NOM = '" + nomIngredientComboBox2.Text + "'";
+                    nbCombobox++;
+                }
+                    
+                if (nomIngredientComboBox3.Text != "")
+                {
+                    ingredientsRecherche += " OR INGREDIENT.NOM = '" + nomIngredientComboBox3.Text + "'";
+                    nbCombobox++;
+                }
+                if (nomIngredientComboBox4.Text != "")
+                {
+                    ingredientsRecherche += " OR INGREDIENT.NOM = '" + nomIngredientComboBox4.Text + "'";
+                    nbCombobox++;
+                }
+                if (nomIngredientComboBox5.Text != "")
+                {
+                    ingredientsRecherche += " OR INGREDIENT.NOM = '" + nomIngredientComboBox5.Text + "'";
+                    nbCombobox++;
+                }
+                if (nomIngredientComboBox6.Text != "")
+                {
+                    ingredientsRecherche += " OR INGREDIENT.NOM = '" + nomIngredientComboBox6.Text + "'";
+                    nbCombobox++;
+                }
+                if (nomIngredientComboBox7.Text != "")
+                {
+                    ingredientsRecherche += " OR INGREDIENT.NOM = '" + nomIngredientComboBox7.Text + "'";
+                    nbCombobox++;
+                }
+                if (nomIngredientComboBox8.Text != "")
+                {
+                    ingredientsRecherche += " OR INGREDIENT.NOM = '" + nomIngredientComboBox8.Text + "'";
+                    nbCombobox++;
+                }
+                if (nomIngredientComboBox9.Text != "")
+                {
+                    ingredientsRecherche += " OR INGREDIENT.NOM = '" + nomIngredientComboBox9.Text + "'";
+                    nbCombobox++;
+                }
+                ingredientsRecherche += " GROUP BY RECETTE_ID HAVING COUNT(DISTINCT RECETTE_INGREDIENT.INGREDIENT_ID) = "+ nbCombobox +")";
+            }
+
             valeurDefautRecherche();
             idRecettesTrouvees.Clear();
             OracleDataReader rechercheRecette = interfaceBD.envoyerRequeteSelection("(SELECT RECETTE.RECETTE_ID FROM RECETTE " +
@@ -192,9 +244,7 @@ namespace ideesouper.ViewController.Controls
                                                                                     "' AND TEMPS_PREPARATION >='" + Convert.ToInt32(tempsPrepDebutComboBox.Text) +
                                                                                     "' AND TEMPS_PREPARATION <='" + Convert.ToInt32(tempsPrepFinComboBox.Text) +
                                                                                     "' AND TYPE_RECETTE = '" + typeRepasComboBox1.Text +
-                                                                                    "') INTERSECT " +
-                                                                                    "(SELECT RECETTE_INGREDIENT.RECETTE_ID FROM RECETTE_INGREDIENT INNER JOIN INGREDIENT ON RECETTE_INGREDIENT.INGREDIENT_ID = INGREDIENT.INGREDIENT_ID WHERE INGREDIENT.NOM = '" + nomIngredientComboBox1.Text+"')" 
-                                                                                     );
+                                                                                    "')" + ingredientsRecherche);
                                                                                        
             while (rechercheRecette.Read())
             {

@@ -126,13 +126,15 @@ namespace ideesouper
         private void trouver_Click(object sender, EventArgs e)
         {
             nouveauRepas1.ChercheRecettes();
-
-            if (nouveauRepas1.idRecettesTrouvees.Count > 1)
+            recetteControl1.AssignDefautList();
+            if (nouveauRepas1.idRecettesTrouvees.Count > 0)
             {
                 recetteControl1.AfficheRecette(Convert.ToInt32(nouveauRepas1.idRecettesTrouvees[0]));
                 recetteTrouveePosition = 0;
+                VerifierPosition();
                 VerifierNavigationRecette();
             }
+            else MessageBox.Show("Aucune recette trouvée");
 
         }
 

@@ -77,7 +77,10 @@ namespace ideesouper
             }
         }
 
+        //liste des controles de ce controle
         public List<ControlDefaultText> Liste = new List<ControlDefaultText>();
+
+        //création des valeurs par défaut des controles de ce controle
         public void DefautList()
         {
             foreach (Control control in this.Controls)
@@ -86,6 +89,7 @@ namespace ideesouper
             }
         }
 
+        //réinitialisation des valeurs par défaut des controles
         public void AssignDefautList()
         {
             foreach (Control control in this.Controls)
