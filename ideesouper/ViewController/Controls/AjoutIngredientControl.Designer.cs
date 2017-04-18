@@ -66,6 +66,7 @@
             this.ingredientComboBox.Size = new System.Drawing.Size(168, 21);
             this.ingredientComboBox.TabIndex = 2;
             this.ingredientComboBox.Text = "Ingrédient";
+            this.ingredientComboBox.SelectedIndexChanged += new System.EventHandler(this.ingredientComboBox_SelectedIndexChanged);
             // 
             // nombrePersonneNumericUpDown1
             // 
@@ -96,6 +97,7 @@
             this.addButton.TabIndex = 157;
             this.addButton.Text = "Ajouter";
             this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
             // cancelButton
             // 
