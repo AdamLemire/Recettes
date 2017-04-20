@@ -51,13 +51,13 @@ namespace ideesouper
             OracleDataReader vuesDifficulte = interfaceBD.envoyerRequeteSelection("SELECT * FROM DIFFICULTE_VIEW");
             while (vuesDifficulte.Read())
             {
-                comboBox2.Items.Add(vuesDifficulte.GetValue(0));
+                difficulteComboBox.Items.Add(vuesDifficulte.GetValue(0));
             }
 
             OracleDataReader vuesTypeRepas = interfaceBD.envoyerRequeteSelection("SELECT * FROM TYPE_REPAS_VIEW");
             while (vuesTypeRepas.Read())
             {
-                comboBox1.Items.Add(vuesTypeRepas.GetValue(0));
+                typeRepasComboBox.Items.Add(vuesTypeRepas.GetValue(0));
             }
 
             OracleDataReader vuesTypeIngredient =
@@ -74,10 +74,15 @@ namespace ideesouper
         {
             addButton.Enabled = false;
             ingredientComboBox.Enabled = false;
+            ingredientComboBox.SelectedIndex = -1;
+            ingredientComboBox.Text = "";
+            typeComboBox.SelectedIndex = -1;
+            typeComboBox.Text = "";
         }
         private void typeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             ingredientComboBox.Items.Clear();
+            ingredientComboBox.Text = "";
             ingredientComboBox.Enabled = true;
             
             OracleDataReader vuesIngredients =
@@ -98,17 +103,13 @@ namespace ideesouper
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtQuantite.Text))
+            if (string.IsNullOrEmpty(quantiteUpDown.Text))
                 return;
                 ListViewItem ingredient = new ListViewItem(ingredientComboBox.Text);
-                ingredient.SubItems.Add(txtQuantite.Text);
+                ingredient.SubItems.Add(quantiteUpDown.Text);
                 ingredientsListView.Items.Add(ingredient);
-                txtQuantite.Clear();
+                quantiteUpDown.Value=1;
                 Lock();
-            
-               
-
-
         }
 
      
@@ -130,5 +131,21 @@ namespace ideesouper
             Lock();
         }
 
+        private void createButton_Click(object sender, EventArgs e)
+        {
+            int complet = verifyEmptyData();
+
+        }
+
+        private int verifyEmptyData()
+        {
+            int complet = 1;
+            if (reciepeNameTextBox.Text=="" || typeRepasComboBox.SelectedIndex == -1 || tempsCTextBox.Text == "" ||
+                tempsPTextBox.Text =="" || difficulteComboBox.SelectedIndex==-1 || ingredientsListView.Items.Count < 1 || etapeRecetteTextBox.Text=="" )
+            {
+                complet = 0;
+            }
+            return complet;
+        }
     }
 }

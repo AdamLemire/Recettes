@@ -30,6 +30,7 @@ namespace ideesouper.ViewController
                 {
                     ComboBox comboBox = (ComboBox)control;
                     comboBox.SelectedIndex = -1;
+                    comboBox.Text = "";
                 }
 
                 if (control is CheckBox)

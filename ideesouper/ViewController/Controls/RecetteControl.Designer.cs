@@ -41,6 +41,8 @@
             this.typeRepasValeurLabel = new System.Windows.Forms.Label();
             this.difficulteValeurLabel = new System.Windows.Forms.Label();
             this.ingredientsListView = new System.Windows.Forms.ListView();
+            this.tempsTotalValueLabel = new System.Windows.Forms.Label();
+            this.tempsTotalLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // nomRecetteLabel
@@ -67,7 +69,7 @@
             // difficulteLabel
             // 
             this.difficulteLabel.AutoSize = true;
-            this.difficulteLabel.Location = new System.Drawing.Point(324, 63);
+            this.difficulteLabel.Location = new System.Drawing.Point(319, 41);
             this.difficulteLabel.Name = "difficulteLabel";
             this.difficulteLabel.Size = new System.Drawing.Size(54, 13);
             this.difficulteLabel.TabIndex = 125;
@@ -148,7 +150,7 @@
             // difficulteValeurLabel
             // 
             this.difficulteValeurLabel.AutoSize = true;
-            this.difficulteValeurLabel.Location = new System.Drawing.Point(375, 63);
+            this.difficulteValeurLabel.Location = new System.Drawing.Point(370, 41);
             this.difficulteValeurLabel.Name = "difficulteValeurLabel";
             this.difficulteValeurLabel.Size = new System.Drawing.Size(46, 13);
             this.difficulteValeurLabel.TabIndex = 130;
@@ -162,10 +164,30 @@
             this.ingredientsListView.TabIndex = 131;
             this.ingredientsListView.UseCompatibleStateImageBehavior = false;
             // 
+            // tempsTotalValueLabel
+            // 
+            this.tempsTotalValueLabel.AutoSize = true;
+            this.tempsTotalValueLabel.Location = new System.Drawing.Point(416, 63);
+            this.tempsTotalValueLabel.Name = "tempsTotalValueLabel";
+            this.tempsTotalValueLabel.Size = new System.Drawing.Size(13, 13);
+            this.tempsTotalValueLabel.TabIndex = 133;
+            this.tempsTotalValueLabel.Text = "0";
+            // 
+            // tempsTotalLabel
+            // 
+            this.tempsTotalLabel.AutoSize = true;
+            this.tempsTotalLabel.Location = new System.Drawing.Point(307, 63);
+            this.tempsTotalLabel.Name = "tempsTotalLabel";
+            this.tempsTotalLabel.Size = new System.Drawing.Size(93, 13);
+            this.tempsTotalLabel.TabIndex = 132;
+            this.tempsTotalLabel.Text = "Temps total (min) :";
+            // 
             // RecetteControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.tempsTotalValueLabel);
+            this.Controls.Add(this.tempsTotalLabel);
             this.Controls.Add(this.ingredientsListView);
             this.Controls.Add(this.difficulteValeurLabel);
             this.Controls.Add(this.typeRepasValeurLabel);
@@ -201,5 +223,7 @@
         private System.Windows.Forms.Label typeRepasValeurLabel;
         private System.Windows.Forms.Label difficulteValeurLabel;
         private System.Windows.Forms.ListView ingredientsListView;
+        private System.Windows.Forms.Label tempsTotalValueLabel;
+        private System.Windows.Forms.Label tempsTotalLabel;
     }
 }

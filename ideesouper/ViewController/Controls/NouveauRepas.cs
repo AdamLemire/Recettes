@@ -183,7 +183,7 @@ namespace ideesouper.ViewController.Controls
 
         public void ChercheRecettes()
         {
-            string ingredientsRecherche = ""; //" INTERSECT (SELECT RECETTE_INGREDIENT.RECETTE_ID FROM RECETTE_INGREDIENT WHERE INGREDIENT_ID = '1' OR INGREDIENT_ID = '8' GROUP BY RECETTE_ID HAVING COUNT(DISTINCT INGREDIENT_ID) = 2 )";
+            string ingredientsRecherche = ""; 
             int nbCombobox = 0;
             if (nomIngredientComboBox1.Text != "")
             {

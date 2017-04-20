@@ -36,10 +36,10 @@
             this.etapeRecetteTextBox = new System.Windows.Forms.TextBox();
             this.nouvelleRecetteLabel = new System.Windows.Forms.Label();
             this.reciepeNameTextBox = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.tempsPTextBox = new System.Windows.Forms.TextBox();
+            this.tempsCTextBox = new System.Windows.Forms.TextBox();
+            this.typeRepasComboBox = new System.Windows.Forms.ComboBox();
+            this.difficulteComboBox = new System.Windows.Forms.ComboBox();
             this.createButton = new System.Windows.Forms.Button();
             this.resetButton = new System.Windows.Forms.Button();
             this.nombrePersonneNumericUpDown1 = new System.Windows.Forms.NumericUpDown();
@@ -52,8 +52,11 @@
             this.ingredientComboBox = new System.Windows.Forms.ComboBox();
             this.typeComboBox = new System.Windows.Forms.ComboBox();
             this.ngredientLabel = new System.Windows.Forms.Label();
-            this.txtQuantite = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.quantiteUpDown = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.nombrePersonneNumericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.quantiteUpDown)).BeginInit();
             this.SuspendLayout();
             // 
             // difficulteLabel
@@ -108,7 +111,7 @@
             this.etapeRecetteTextBox.MinimumSize = new System.Drawing.Size(407, 100);
             this.etapeRecetteTextBox.Multiline = true;
             this.etapeRecetteTextBox.Name = "etapeRecetteTextBox";
-            this.etapeRecetteTextBox.Size = new System.Drawing.Size(551, 209);
+            this.etapeRecetteTextBox.Size = new System.Drawing.Size(551, 235);
             this.etapeRecetteTextBox.TabIndex = 132;
             // 
             // nouvelleRecetteLabel
@@ -128,48 +131,51 @@
             this.reciepeNameTextBox.Size = new System.Drawing.Size(407, 20);
             this.reciepeNameTextBox.TabIndex = 145;
             // 
-            // textBox2
+            // tempsPTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(127, 84);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(47, 20);
-            this.textBox2.TabIndex = 147;
+            this.tempsPTextBox.Location = new System.Drawing.Point(127, 84);
+            this.tempsPTextBox.Name = "tempsPTextBox";
+            this.tempsPTextBox.Size = new System.Drawing.Size(47, 20);
+            this.tempsPTextBox.TabIndex = 147;
             // 
-            // textBox3
+            // tempsCTextBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(294, 84);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(47, 20);
-            this.textBox3.TabIndex = 148;
+            this.tempsCTextBox.Location = new System.Drawing.Point(294, 84);
+            this.tempsCTextBox.Name = "tempsCTextBox";
+            this.tempsCTextBox.Size = new System.Drawing.Size(47, 20);
+            this.tempsCTextBox.TabIndex = 148;
             // 
-            // comboBox1
+            // typeRepasComboBox
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(276, 62);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(138, 21);
-            this.comboBox1.TabIndex = 149;
+            this.typeRepasComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.typeRepasComboBox.FormattingEnabled = true;
+            this.typeRepasComboBox.Location = new System.Drawing.Point(276, 62);
+            this.typeRepasComboBox.Name = "typeRepasComboBox";
+            this.typeRepasComboBox.Size = new System.Drawing.Size(138, 21);
+            this.typeRepasComboBox.TabIndex = 149;
             // 
-            // comboBox2
+            // difficulteComboBox
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(420, 88);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(138, 21);
-            this.comboBox2.TabIndex = 150;
+            this.difficulteComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.difficulteComboBox.FormattingEnabled = true;
+            this.difficulteComboBox.Location = new System.Drawing.Point(420, 88);
+            this.difficulteComboBox.Name = "difficulteComboBox";
+            this.difficulteComboBox.Size = new System.Drawing.Size(138, 21);
+            this.difficulteComboBox.TabIndex = 150;
             // 
             // createButton
             // 
-            this.createButton.Location = new System.Drawing.Point(458, 545);
+            this.createButton.Location = new System.Drawing.Point(713, 542);
             this.createButton.Name = "createButton";
             this.createButton.Size = new System.Drawing.Size(75, 23);
             this.createButton.TabIndex = 152;
             this.createButton.Text = "Créer";
             this.createButton.UseVisualStyleBackColor = true;
+            this.createButton.Click += new System.EventHandler(this.createButton_Click);
             // 
             // resetButton
             // 
-            this.resetButton.Location = new System.Drawing.Point(41, 545);
+            this.resetButton.Location = new System.Drawing.Point(593, 542);
             this.resetButton.Name = "resetButton";
             this.resetButton.Size = new System.Drawing.Size(75, 23);
             this.resetButton.TabIndex = 153;
@@ -218,7 +224,7 @@
             // 
             // cancelButton
             // 
-            this.cancelButton.Location = new System.Drawing.Point(628, 255);
+            this.cancelButton.Location = new System.Drawing.Point(593, 255);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(75, 23);
             this.cancelButton.TabIndex = 166;
@@ -228,7 +234,7 @@
             // 
             // addButton
             // 
-            this.addButton.Location = new System.Drawing.Point(721, 255);
+            this.addButton.Location = new System.Drawing.Point(686, 255);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(75, 23);
             this.addButton.TabIndex = 165;
@@ -239,7 +245,7 @@
             // quantiteLabel
             // 
             this.quantiteLabel.AutoSize = true;
-            this.quantiteLabel.Location = new System.Drawing.Point(625, 220);
+            this.quantiteLabel.Location = new System.Drawing.Point(590, 220);
             this.quantiteLabel.Name = "quantiteLabel";
             this.quantiteLabel.Size = new System.Drawing.Size(53, 13);
             this.quantiteLabel.TabIndex = 163;
@@ -247,46 +253,76 @@
             // 
             // ingredientComboBox
             // 
+            this.ingredientComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.ingredientComboBox.FormattingEnabled = true;
-            this.ingredientComboBox.Location = new System.Drawing.Point(628, 184);
+            this.ingredientComboBox.Location = new System.Drawing.Point(593, 184);
             this.ingredientComboBox.Name = "ingredientComboBox";
             this.ingredientComboBox.Size = new System.Drawing.Size(168, 21);
             this.ingredientComboBox.TabIndex = 162;
-            this.ingredientComboBox.Text = "Ingrédient";
             this.ingredientComboBox.SelectedIndexChanged += new System.EventHandler(this.ingredientComboBox_SelectedIndexChanged);
             // 
             // typeComboBox
             // 
+            this.typeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.typeComboBox.FormattingEnabled = true;
-            this.typeComboBox.Location = new System.Drawing.Point(628, 157);
+            this.typeComboBox.Location = new System.Drawing.Point(593, 143);
             this.typeComboBox.Name = "typeComboBox";
             this.typeComboBox.Size = new System.Drawing.Size(168, 21);
             this.typeComboBox.TabIndex = 161;
-            this.typeComboBox.Text = "Catégorie";
             this.typeComboBox.SelectedIndexChanged += new System.EventHandler(this.typeComboBox_SelectedIndexChanged);
             // 
             // ngredientLabel
             // 
             this.ngredientLabel.AutoSize = true;
             this.ngredientLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ngredientLabel.Location = new System.Drawing.Point(656, 115);
+            this.ngredientLabel.Location = new System.Drawing.Point(622, 102);
             this.ngredientLabel.Name = "ngredientLabel";
             this.ngredientLabel.Size = new System.Drawing.Size(107, 25);
             this.ngredientLabel.TabIndex = 160;
             this.ngredientLabel.Text = "Ingredient";
             // 
-            // txtQuantite
+            // label1
             // 
-            this.txtQuantite.Location = new System.Drawing.Point(684, 217);
-            this.txtQuantite.Name = "txtQuantite";
-            this.txtQuantite.Size = new System.Drawing.Size(112, 20);
-            this.txtQuantite.TabIndex = 167;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(590, 127);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(58, 13);
+            this.label1.TabIndex = 168;
+            this.label1.Text = "Catégorie :";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(590, 168);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(60, 13);
+            this.label2.TabIndex = 169;
+            this.label2.Text = "Ingrédient :";
+            // 
+            // quantiteUpDown
+            // 
+            this.quantiteUpDown.Location = new System.Drawing.Point(649, 218);
+            this.quantiteUpDown.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.quantiteUpDown.Name = "quantiteUpDown";
+            this.quantiteUpDown.Size = new System.Drawing.Size(112, 20);
+            this.quantiteUpDown.TabIndex = 170;
+            this.quantiteUpDown.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // NouvelleRecetteControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.txtQuantite);
+            this.Controls.Add(this.quantiteUpDown);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.cancelButton);
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.quantiteLabel);
@@ -299,10 +335,10 @@
             this.Controls.Add(this.nombrePersonneNumericUpDown1);
             this.Controls.Add(this.resetButton);
             this.Controls.Add(this.createButton);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.difficulteComboBox);
+            this.Controls.Add(this.typeRepasComboBox);
+            this.Controls.Add(this.tempsCTextBox);
+            this.Controls.Add(this.tempsPTextBox);
             this.Controls.Add(this.reciepeNameTextBox);
             this.Controls.Add(this.nouvelleRecetteLabel);
             this.Controls.Add(this.difficulteLabel);
@@ -314,6 +350,7 @@
             this.Name = "NouvelleRecetteControl";
             this.Size = new System.Drawing.Size(857, 583);
             ((System.ComponentModel.ISupportInitialize)(this.nombrePersonneNumericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.quantiteUpDown)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -328,10 +365,10 @@
         private System.Windows.Forms.TextBox etapeRecetteTextBox;
         private System.Windows.Forms.Label nouvelleRecetteLabel;
         private System.Windows.Forms.TextBox reciepeNameTextBox;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.TextBox tempsPTextBox;
+        private System.Windows.Forms.TextBox tempsCTextBox;
+        private System.Windows.Forms.ComboBox typeRepasComboBox;
+        private System.Windows.Forms.ComboBox difficulteComboBox;
         private System.Windows.Forms.Button createButton;
         private System.Windows.Forms.Button resetButton;
         private System.Windows.Forms.NumericUpDown nombrePersonneNumericUpDown1;
@@ -344,6 +381,8 @@
         private System.Windows.Forms.ComboBox ingredientComboBox;
         private System.Windows.Forms.ComboBox typeComboBox;
         private System.Windows.Forms.Label ngredientLabel;
-        private System.Windows.Forms.TextBox txtQuantite;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.NumericUpDown quantiteUpDown;
     }
 }
