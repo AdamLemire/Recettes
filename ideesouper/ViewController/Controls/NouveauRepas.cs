@@ -180,10 +180,9 @@ namespace ideesouper.ViewController.Controls
             quantiteIngredientNumericUpDown9.Enabled = false;
         }
 
-
-        public void ChercheRecettes()
+        public string getIngredients()
         {
-            string ingredientsRecherche = ""; 
+            string ingredientsRecherche = "";
             int nbCombobox = 0;
             if (nomIngredientComboBox1.Text != "")
             {
@@ -196,7 +195,7 @@ namespace ideesouper.ViewController.Controls
                     ingredientsRecherche += " OR INGREDIENT.NOM = '" + nomIngredientComboBox2.Text + "'";
                     nbCombobox++;
                 }
-                    
+
                 if (nomIngredientComboBox3.Text != "")
                 {
                     ingredientsRecherche += " OR INGREDIENT.NOM = '" + nomIngredientComboBox3.Text + "'";
@@ -232,20 +231,37 @@ namespace ideesouper.ViewController.Controls
                     ingredientsRecherche += " OR INGREDIENT.NOM = '" + nomIngredientComboBox9.Text + "'";
                     nbCombobox++;
                 }
-                ingredientsRecherche += " GROUP BY RECETTE_ID HAVING COUNT(DISTINCT RECETTE_INGREDIENT.INGREDIENT_ID) = "+ nbCombobox +")";
+                ingredientsRecherche += " GROUP BY RECETTE_ID HAVING COUNT(DISTINCT RECETTE_INGREDIENT.INGREDIENT_ID) = " + nbCombobox + ")";
             }
-
+            return ingredientsRecherche;
+        }
+        public void ChercheRecettes()
+        {
             valeurDefautRecherche();
             idRecettesTrouvees.Clear();
-            OracleDataReader rechercheRecette = interfaceBD.envoyerRequeteSelection("(SELECT RECETTE.RECETTE_ID FROM RECETTE " +
+
+            int tempsCuissonMin = Convert.ToInt32(tempsCuissonDebutComboBox.Text);
+            int tempsCuissonMax = Convert.ToInt32(tempsCuissonFinComboBox.Text);
+            int tempsPreparationMin = Convert.ToInt32(tempsPrepDebutComboBox.Text);
+            int tempsPreparationMax = Convert.ToInt32(tempsPrepFinComboBox.Text);
+            string typeRepas = "'"+typeRepasComboBox1.Text+"'";
+
+            string inputsRecherche = tempsCuissonMin + "," + tempsCuissonMax + "," + tempsPreparationMin + "," +
+                                     tempsPreparationMax + "," + typeRepas;
+
+            OracleDataReader rechercheRecette =
+                interfaceBD.envoyerRequeteSelection("(SELECT * FROM TABLE(RECHERCHE_RECETTE_FCT("+inputsRecherche+")))"+getIngredients());
+
+            //ancien code sans fonction
+            /*OracleDataReader rechercheRecette = interfaceBD.envoyerRequeteSelection("(SELECT RECETTE.RECETTE_ID FROM RECETTE " +
                                                                                     "WHERE " +
                                                                                     "TEMPS_CUISSON >='" + Convert.ToInt32(tempsCuissonDebutComboBox.Text) +
                                                                                     "' AND TEMPS_CUISSON <='" + Convert.ToInt32(tempsCuissonFinComboBox.Text) +
                                                                                     "' AND TEMPS_PREPARATION >='" + Convert.ToInt32(tempsPrepDebutComboBox.Text) +
                                                                                     "' AND TEMPS_PREPARATION <='" + Convert.ToInt32(tempsPrepFinComboBox.Text) +
                                                                                     "' AND TYPE_RECETTE = '" + typeRepasComboBox1.Text +
-                                                                                    "')" + ingredientsRecherche);
-                                                                                       
+                                                                                    "')" + ingredientsRecherche); */
+
             while (rechercheRecette.Read())
             {
                 idRecettesTrouvees.Add(rechercheRecette.GetDouble(0));

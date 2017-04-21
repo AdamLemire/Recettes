@@ -119,10 +119,10 @@ namespace ideesouper
             Utilities.ResetAllControls(this);
         }
 
-
+        //Supprimer de la liste les ingrédients sélectionnés
         private void buttonSuppIngredient_Click(object sender, EventArgs e)
         {
-            if(ingredientsListView.Items.Count > 0 )
+            if(ingredientsListView.SelectedItems.Count > 0 )
                 ingredientsListView.SelectedItems[0].Remove();
         }
 
@@ -134,7 +134,15 @@ namespace ideesouper
         private void createButton_Click(object sender, EventArgs e)
         {
             int complet = verifyEmptyData();
-
+            if (complet == 1)
+            {
+                
+            }
+                
+            else
+            {
+                MessageBox.Show("Formulaire incomplet");
+            }
         }
 
         private int verifyEmptyData()
