@@ -160,14 +160,10 @@ namespace ideesouper
                 interfaceBD.appelerProcedureStockee("AJOUT_RECETTE", collection);
                 int idRecette = Convert.ToInt32(collection[collection.Length - 1].Value);
 
-                MessageBox.Show("La recette #" + idRecette + " a été créée avec succès");
-
                 foreach (ListViewItem ingredient in ingredientsListView.Items)
                 {
                     string nomIngredient = ingredient.Text;
-                    //string qteingreTxt = ingredient.SubItems[1].Text;
                     int quantiteIngredient = Convert.ToInt32(ingredient.SubItems[1].Text);
-                    MessageBox.Show("ingredient " + nomIngredient + " qte "+quantiteIngredient);
                     int idIngredient = Convert.ToInt32(interfaceBD.envoyerRequeteScalaire("SELECT INGREDIENT_ID FROM INGREDIENT WHERE NOM = '" + nomIngredient + "'"));
 
                     OracleParameter[] ingredientCollection = {
