@@ -60,6 +60,12 @@
     <Compile Include="ViewController\Controls\AjoutIngredientControl.Designer.cs">
       <DependentUpon>AjoutIngredientControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="ViewController\Controls\NouvelIngredient.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ViewController\Controls\NouvelIngredient.Designer.cs">
+      <DependentUpon>NouvelIngredient.cs</DependentUpon>
+    </Compile>
     <Compile Include="ViewController\Controls\NouveauRepas.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -90,6 +96,9 @@
     <Compile Include="ViewController\Utilities.cs" />
     <EmbeddedResource Include="ViewController\Controls\AjoutIngredientControl.resx">
       <DependentUpon>AjoutIngredientControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewController\Controls\NouvelIngredient.resx">
+      <DependentUpon>NouvelIngredient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ViewController\Controls\NouveauRepas.resx">
       <DependentUpon>NouveauRepas.cs</DependentUpon>

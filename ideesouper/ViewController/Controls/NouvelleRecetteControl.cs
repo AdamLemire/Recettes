@@ -72,12 +72,14 @@ namespace ideesouper
         //Rendre inutilisable bouton ajouter et le combobox ingredient
         private void Lock()
         {
-            addButton.Enabled = false;
-            ingredientComboBox.Enabled = false;
             ingredientComboBox.SelectedIndex = -1;
             ingredientComboBox.Text = "";
             typeComboBox.SelectedIndex = -1;
             typeComboBox.Text = "";
+            addButton.Enabled = false;
+            ingredientComboBox.Enabled = false;
+           
+            
         }
         private void typeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -129,6 +131,7 @@ namespace ideesouper
         private void cancelButton_Click(object sender, EventArgs e)
         {
             Lock();
+
         }
 
         private void createButton_Click(object sender, EventArgs e)

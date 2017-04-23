@@ -45,18 +45,21 @@
             this.recherchePanel = new System.Windows.Forms.Panel();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.nouveauRepas1 = new ideesouper.ViewController.Controls.NouveauRepas();
             this.recetteResultatPanel = new System.Windows.Forms.Panel();
-            this.recetteControl1 = new ideesouper.RecetteControl();
             this.suivanteButton = new System.Windows.Forms.Button();
             this.precedenteButton = new System.Windows.Forms.Button();
             this.nouvelleRecettePanel = new System.Windows.Forms.Panel();
+            this.nouvelIngredientPanel = new System.Windows.Forms.Panel();
+            this.nouvelIngredient1 = new ideesouper.ViewController.Controls.NouvelIngredient();
+            this.nouveauRepas1 = new ideesouper.ViewController.Controls.NouveauRepas();
+            this.recetteControl1 = new ideesouper.RecetteControl();
             this.nouvelleRecetteControl1 = new ideesouper.NouvelleRecetteControl();
             this.menuStrip.SuspendLayout();
             this.ideePanel.SuspendLayout();
             this.recherchePanel.SuspendLayout();
             this.recetteResultatPanel.SuspendLayout();
             this.nouvelleRecettePanel.SuspendLayout();
+            this.nouvelIngredientPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -151,6 +154,7 @@
             this.nouvelIngrédientToolStripMenuItem.Name = "nouvelIngrédientToolStripMenuItem";
             this.nouvelIngrédientToolStripMenuItem.Size = new System.Drawing.Size(169, 22);
             this.nouvelIngrédientToolStripMenuItem.Text = "Nouvel ingrédient";
+            this.nouvelIngrédientToolStripMenuItem.Click += new System.EventHandler(this.nouvelIngrédientToolStripMenuItem_Click);
             // 
             // catalogueToolStripMenuItem2
             // 
@@ -200,13 +204,6 @@
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.trouver_Click);
             // 
-            // nouveauRepas1
-            // 
-            this.nouveauRepas1.Location = new System.Drawing.Point(0, 0);
-            this.nouveauRepas1.Name = "nouveauRepas1";
-            this.nouveauRepas1.Size = new System.Drawing.Size(434, 507);
-            this.nouveauRepas1.TabIndex = 121;
-            // 
             // recetteResultatPanel
             // 
             this.recetteResultatPanel.Controls.Add(this.recetteControl1);
@@ -214,13 +211,6 @@
             this.recetteResultatPanel.Name = "recetteResultatPanel";
             this.recetteResultatPanel.Size = new System.Drawing.Size(452, 578);
             this.recetteResultatPanel.TabIndex = 122;
-            // 
-            // recetteControl1
-            // 
-            this.recetteControl1.Location = new System.Drawing.Point(0, 0);
-            this.recetteControl1.Name = "recetteControl1";
-            this.recetteControl1.Size = new System.Drawing.Size(442, 619);
-            this.recetteControl1.TabIndex = 120;
             // 
             // suivanteButton
             // 
@@ -245,11 +235,42 @@
             // nouvelleRecettePanel
             // 
             this.nouvelleRecettePanel.Controls.Add(this.nouvelleRecetteControl1);
+            this.nouvelleRecettePanel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.nouvelleRecettePanel.Location = new System.Drawing.Point(0, 0);
             this.nouvelleRecettePanel.Name = "nouvelleRecettePanel";
             this.nouvelleRecettePanel.Size = new System.Drawing.Size(931, 619);
             this.nouvelleRecettePanel.TabIndex = 122;
             this.nouvelleRecettePanel.Visible = false;
+            // 
+            // nouvelIngredientPanel
+            // 
+            this.nouvelIngredientPanel.Controls.Add(this.nouvelIngredient1);
+            this.nouvelIngredientPanel.Location = new System.Drawing.Point(0, 27);
+            this.nouvelIngredientPanel.Name = "nouvelIngredientPanel";
+            this.nouvelIngredientPanel.Size = new System.Drawing.Size(515, 558);
+            this.nouvelIngredientPanel.TabIndex = 125;
+            this.nouvelIngredientPanel.Visible = false;
+            // 
+            // nouvelIngredient1
+            // 
+            this.nouvelIngredient1.Location = new System.Drawing.Point(-154, 0);
+            this.nouvelIngredient1.Name = "nouvelIngredient1";
+            this.nouvelIngredient1.Size = new System.Drawing.Size(928, 619);
+            this.nouvelIngredient1.TabIndex = 0;
+            // 
+            // nouveauRepas1
+            // 
+            this.nouveauRepas1.Location = new System.Drawing.Point(0, 0);
+            this.nouveauRepas1.Name = "nouveauRepas1";
+            this.nouveauRepas1.Size = new System.Drawing.Size(434, 507);
+            this.nouveauRepas1.TabIndex = 121;
+            // 
+            // recetteControl1
+            // 
+            this.recetteControl1.Location = new System.Drawing.Point(0, 0);
+            this.recetteControl1.Name = "recetteControl1";
+            this.recetteControl1.Size = new System.Drawing.Size(442, 619);
+            this.recetteControl1.TabIndex = 120;
             // 
             // nouvelleRecetteControl1
             // 
@@ -263,6 +284,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(937, 646);
+            this.Controls.Add(this.nouvelIngredientPanel);
             this.Controls.Add(this.menuStrip);
             this.Controls.Add(this.ideePanel);
             this.Controls.Add(this.nouvelleRecettePanel);
@@ -275,6 +297,7 @@
             this.recherchePanel.ResumeLayout(false);
             this.recetteResultatPanel.ResumeLayout(false);
             this.nouvelleRecettePanel.ResumeLayout(false);
+            this.nouvelIngredientPanel.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -305,6 +328,8 @@
         private System.Windows.Forms.Panel recetteResultatPanel;
         private System.Windows.Forms.Panel recherchePanel;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Panel nouvelIngredientPanel;
+        private ViewController.Controls.NouvelIngredient nouvelIngredient1;
     }
 }
 
