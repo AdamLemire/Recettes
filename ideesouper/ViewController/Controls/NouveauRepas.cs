@@ -18,13 +18,7 @@ namespace ideesouper.ViewController.Controls
 
         InterfaceBD interfaceBD = new InterfaceBD(Utilities.URL, Utilities.PORT, Utilities.SCHEMA, Utilities.USERNAME, Utilities.PASSWORD);
 
-       /* OracleParameter[] collection = {
-                    new OracleParameter("a", OracleType.Number, 0, System.Data.ParameterDirection.Input, null, System.Data.DataRowVersion.Default, true, 3),
 
-                    new OracleParameter("facteur", OracleType.Number, 0, System.Data.ParameterDirection.Input, null, System.Data.DataRowVersion.Default, true, 5),
-
-                    new OracleParameter("c", OracleType.Number, 0, System.Data.ParameterDirection.Output, null, System.Data.DataRowVersion.Default, true, 0)
-                };*/
         public NouveauRepas()
         {
             interfaceBD.ouvrirConnexion();
@@ -180,6 +174,7 @@ namespace ideesouper.ViewController.Controls
             quantiteIngredientNumericUpDown9.Enabled = false;
         }
 
+        //partie de la recherche concernant les ingrédients. Impossible de faire une fonction avec cette recherche car le nombre d'ingrédients à rechercher est variable
         public string getIngredients()
         {
             string ingredientsRecherche = "";
@@ -235,6 +230,8 @@ namespace ideesouper.ViewController.Controls
             }
             return ingredientsRecherche;
         }
+
+        //Méthode de la recherche de recette en fonction de tous les paramètres entrés
         public void ChercheRecettes()
         {
             valeurDefautRecherche();
@@ -251,16 +248,6 @@ namespace ideesouper.ViewController.Controls
 
             OracleDataReader rechercheRecette =
                 interfaceBD.envoyerRequeteSelection("(SELECT * FROM TABLE(RECHERCHE_RECETTE_FCT("+inputsRecherche+")))"+getIngredients());
-
-            //ancien code sans fonction
-            /*OracleDataReader rechercheRecette = interfaceBD.envoyerRequeteSelection("(SELECT RECETTE.RECETTE_ID FROM RECETTE " +
-                                                                                    "WHERE " +
-                                                                                    "TEMPS_CUISSON >='" + Convert.ToInt32(tempsCuissonDebutComboBox.Text) +
-                                                                                    "' AND TEMPS_CUISSON <='" + Convert.ToInt32(tempsCuissonFinComboBox.Text) +
-                                                                                    "' AND TEMPS_PREPARATION >='" + Convert.ToInt32(tempsPrepDebutComboBox.Text) +
-                                                                                    "' AND TEMPS_PREPARATION <='" + Convert.ToInt32(tempsPrepFinComboBox.Text) +
-                                                                                    "' AND TYPE_RECETTE = '" + typeRepasComboBox1.Text +
-                                                                                    "')" + ingredientsRecherche); */
 
             while (rechercheRecette.Read())
             {

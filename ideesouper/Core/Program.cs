@@ -19,7 +19,7 @@ namespace ideesouper
 
             try
             {
-                interfaceBD.ouvrirConnexion();
+                //interfaceBD.ouvrirConnexion();
 
                 //interfaceBD.envoyerRequete("INSERT INTO FRUITS (FRUITID, NOMFRUIT) VALUES ('4','Jean4')", ModeVerrou.Exclusif, "FRUITS");
                 //Console.Out.WriteLine(interfaceBD.envoyerRequeteScalaire("SELECT COUNT(*) FROM FRUITS").ToString() + " enregistrements dans la table fruits:");
@@ -42,8 +42,6 @@ namespace ideesouper
 
                 //interfaceBD.appelerProcedureStockee("multiplicateur", collection);
 
-                
-
 
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
@@ -51,7 +49,6 @@ namespace ideesouper
 
                 //interfaceBD.fermerConnexion();
 
-                //Console.In.ReadLine();
             }
             catch (Exception e)
             {
@@ -62,10 +59,6 @@ namespace ideesouper
 
                 Application.Exit();
             }
-
-
         }
-
-
     }
 }

@@ -19,7 +19,7 @@ namespace ideesouper
         InterfaceBD interfaceBD = new InterfaceBD("neptune.uqtr.ca", "1521", "coursbd", "SMI1002_25", "98rghc88");
         [DllImport("user32.dll")]
         private static extern IntPtr SendMessage(IntPtr hWnd, int Msg, int wParam, [MarshalAs(UnmanagedType.LPWStr)] string lParam);
-        
+
         public NouvelleRecetteControl()
         {
             interfaceBD.ouvrirConnexion();
@@ -29,25 +29,25 @@ namespace ideesouper
             Lock();
         }
 
-       /* private void AddIngredientClick(object sender, EventArgs e)
-        {
-            if (!ajoutIngredientControl1.Visible)
-                ajoutIngredientControl1.Show();
-            else
-            {
-                ajoutIngredientControl1.Hide();
-                Utilities.ResetAllControls(ajoutIngredientControl1);
-            }
-        }
-        */
+        /* private void AddIngredientClick(object sender, EventArgs e)
+         {
+             if (!ajoutIngredientControl1.Visible)
+                 ajoutIngredientControl1.Show();
+             else
+             {
+                 ajoutIngredientControl1.Hide();
+                 Utilities.ResetAllControls(ajoutIngredientControl1);
+             }
+         }
+         */
         public void InitializeListView()
         {
-            
+
             ingredientsListView.View = View.Details;
             ColumnHeader header1 = ingredientsListView.Columns.Add("Ingrédient", 50 * Convert.ToInt32(ingredientsListView.Font.SizeInPoints), HorizontalAlignment.Center);
             ColumnHeader header2 = ingredientsListView.Columns.Add("Quantité", 20 * Convert.ToInt32(ingredientsListView.Font.SizeInPoints), HorizontalAlignment.Center);
             //ColumnHeader header3 = ingredientsListView.Columns.Add("Supprimer", 10 * Convert.ToInt32(ingredientsListView.Font.SizeInPoints), HorizontalAlignment.Center);
-            
+
             OracleDataReader vuesDifficulte = interfaceBD.envoyerRequeteSelection("SELECT * FROM DIFFICULTE_VIEW");
             while (vuesDifficulte.Read())
             {
@@ -84,7 +84,7 @@ namespace ideesouper
             ingredientComboBox.Items.Clear();
             ingredientComboBox.Text = "";
             ingredientComboBox.Enabled = true;
-            
+
             OracleDataReader vuesIngredients =
                 interfaceBD.envoyerRequeteSelection("SELECT DISTINCT NOM FROM INGREDIENT WHERE CATEGORIE ='" +
                                                     typeComboBox.Text + "' ORDER BY NOM ASC");
@@ -105,14 +105,14 @@ namespace ideesouper
         {
             if (string.IsNullOrEmpty(quantiteUpDown.Text))
                 return;
-                ListViewItem ingredient = new ListViewItem(ingredientComboBox.Text);
-                ingredient.SubItems.Add(quantiteUpDown.Text);
-                ingredientsListView.Items.Add(ingredient);
-                quantiteUpDown.Value=1;
-                Lock();
+            ListViewItem ingredient = new ListViewItem(ingredientComboBox.Text);
+            ingredient.SubItems.Add(quantiteUpDown.Text);
+            ingredientsListView.Items.Add(ingredient);
+            quantiteUpDown.Value = 1;
+            Lock();
         }
 
-     
+
 
         private void resetButton_Click(object sender, EventArgs e)
         {
@@ -122,7 +122,7 @@ namespace ideesouper
         //Supprimer de la liste les ingrédients sélectionnés
         private void buttonSuppIngredient_Click(object sender, EventArgs e)
         {
-            if(ingredientsListView.SelectedItems.Count > 0 )
+            if (ingredientsListView.SelectedItems.Count > 0)
                 ingredientsListView.SelectedItems[0].Remove();
         }
 
@@ -136,9 +136,50 @@ namespace ideesouper
             int complet = verifyEmptyData();
             if (complet == 1)
             {
-                
+                string nom = reciepeNameTextBox.Text;
+                int tempsPreparation = Convert.ToInt32(tempsPTextBox.Text);
+                int tempsCuisson = Convert.ToInt32(tempsCTextBox.Text);
+                string typeRecette = typeRepasComboBox.Text;
+                int nbPersonne = Convert.ToInt32(nombrePersonneNumericUpDown1.Text);
+                string instructions = etapeRecetteTextBox.Text;
+                string difficulte = difficulteComboBox.Text;
+
+                OracleParameter[] collection = {
+                    new OracleParameter("nom", OracleType.VarChar, 0, System.Data.ParameterDirection.Input, null, System.Data.DataRowVersion.Default, true, nom),
+                    new OracleParameter("temps_preparation", OracleType.Number, 0, System.Data.ParameterDirection.Input, null, System.Data.DataRowVersion.Default, true, tempsPreparation),
+                    new OracleParameter("temps_cuisson", OracleType.Number, 0, System.Data.ParameterDirection.Input, null, System.Data.DataRowVersion.Default, true, tempsCuisson),
+                    new OracleParameter("type_recette", OracleType.VarChar, 0, System.Data.ParameterDirection.Input, null, System.Data.DataRowVersion.Default, true, typeRecette),
+                    new OracleParameter("nb_personne", OracleType.Number, 0, System.Data.ParameterDirection.Input, null, System.Data.DataRowVersion.Default, true, nbPersonne),
+                    new OracleParameter("instructions", OracleType.VarChar, 0, System.Data.ParameterDirection.Input, null, System.Data.DataRowVersion.Default, true, instructions),
+                    new OracleParameter("difficulte", OracleType.VarChar, 0, System.Data.ParameterDirection.Input, null, System.Data.DataRowVersion.Default, true, difficulte),
+                    new OracleParameter("recette_id", OracleType.Number, 0, System.Data.ParameterDirection.Output, null, System.Data.DataRowVersion.Default, true, 0)
+                };
+
+                //création de la recette
+                interfaceBD.appelerProcedureStockee("AJOUT_RECETTE", collection);
+                int idRecette = Convert.ToInt32(collection[collection.Length - 1].Value);
+
+                foreach (ListViewItem ingredients in ingredientsListView.Items)
+                {
+                    string nomIngredient = ingredients.Text;
+                    int quantiteIngredient = Convert.ToInt32(ingredients.SubItems.ToString());
+                    int idIngredient = Convert.ToInt32(interfaceBD.envoyerRequeteScalaire("SELECT INGREDIENT_ID FROM INGREDIENT WHERE NOM = '" + nomIngredient + "'"));
+
+                    OracleParameter[] ingredientCollection = {
+                        new OracleParameter("recette", OracleType.Number, 0, System.Data.ParameterDirection.Input, null, System.Data.DataRowVersion.Default, true, idRecette),
+                        new OracleParameter("idIngredient", OracleType.Number, 0, System.Data.ParameterDirection.Input, null, System.Data.DataRowVersion.Default, true, idIngredient),
+                        new OracleParameter("qte", OracleType.Number, 0, System.Data.ParameterDirection.Input, null, System.Data.DataRowVersion.Default, true, quantiteIngredient)
+                    };
+                    interfaceBD.appelerProcedureStockee("AJOUT_RECETTE_INGREDIENT", ingredientCollection);
+                }
+
+
+                //if ((interfaceBD.envoyerRequeteScalaire("SELECT NOM FROM RECETTE WHERE RECETTE_ID = '" + nomIngredient + "'")) == nom)
+                MessageBox.Show("La recette #" + idRecette + " a été créée avec succès");
+                //else
+                //MessageBox.Show("Une erreur s'est produite");
             }
-                
+
             else
             {
                 MessageBox.Show("Formulaire incomplet");
@@ -148,8 +189,8 @@ namespace ideesouper
         private int verifyEmptyData()
         {
             int complet = 1;
-            if (reciepeNameTextBox.Text=="" || typeRepasComboBox.SelectedIndex == -1 || tempsCTextBox.Text == "" ||
-                tempsPTextBox.Text =="" || difficulteComboBox.SelectedIndex==-1 || ingredientsListView.Items.Count < 1 || etapeRecetteTextBox.Text=="" )
+            if (reciepeNameTextBox.Text == "" || typeRepasComboBox.SelectedIndex == -1 || tempsCTextBox.Text == "" ||
+                tempsPTextBox.Text == "" || difficulteComboBox.SelectedIndex == -1 || ingredientsListView.Items.Count < 1 || etapeRecetteTextBox.Text == "")
             {
                 complet = 0;
             }
