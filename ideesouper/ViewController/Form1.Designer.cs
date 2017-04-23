@@ -94,12 +94,14 @@
             // 
             // ouvrirRepasToolStripMenuItem
             // 
+            this.ouvrirRepasToolStripMenuItem.Enabled = false;
             this.ouvrirRepasToolStripMenuItem.Name = "ouvrirRepasToolStripMenuItem";
             this.ouvrirRepasToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.ouvrirRepasToolStripMenuItem.Text = "Ouvrir repas";
             // 
             // sauvegarderToolStripMenuItem
             // 
+            this.sauvegarderToolStripMenuItem.Enabled = false;
             this.sauvegarderToolStripMenuItem.Name = "sauvegarderToolStripMenuItem";
             this.sauvegarderToolStripMenuItem.Size = new System.Drawing.Size(153, 22);
             this.sauvegarderToolStripMenuItem.Text = "Sauvegarder";
@@ -130,12 +132,14 @@
             // 
             // catalogueToolStripMenuItem1
             // 
+            this.catalogueToolStripMenuItem1.Enabled = false;
             this.catalogueToolStripMenuItem1.Name = "catalogueToolStripMenuItem1";
             this.catalogueToolStripMenuItem1.Size = new System.Drawing.Size(160, 22);
             this.catalogueToolStripMenuItem1.Text = "Catalogue";
             // 
             // favorisToolStripMenuItem
             // 
+            this.favorisToolStripMenuItem.Enabled = false;
             this.favorisToolStripMenuItem.Name = "favorisToolStripMenuItem";
             this.favorisToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
             this.favorisToolStripMenuItem.Text = "Favoris";
@@ -158,6 +162,7 @@
             // 
             // catalogueToolStripMenuItem2
             // 
+            this.catalogueToolStripMenuItem2.Enabled = false;
             this.catalogueToolStripMenuItem2.Name = "catalogueToolStripMenuItem2";
             this.catalogueToolStripMenuItem2.Size = new System.Drawing.Size(169, 22);
             this.catalogueToolStripMenuItem2.Text = "Catalogue";
