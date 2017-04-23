@@ -72,14 +72,12 @@ namespace ideesouper
         //Rendre inutilisable bouton ajouter et le combobox ingredient
         private void Lock()
         {
+            addButton.Enabled = false;
+            ingredientComboBox.Enabled = false;
             ingredientComboBox.SelectedIndex = -1;
             ingredientComboBox.Text = "";
             typeComboBox.SelectedIndex = -1;
             typeComboBox.Text = "";
-            addButton.Enabled = false;
-            ingredientComboBox.Enabled = false;
-           
-            
         }
         private void typeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -131,7 +129,6 @@ namespace ideesouper
         private void cancelButton_Click(object sender, EventArgs e)
         {
             Lock();
-
         }
 
         private void createButton_Click(object sender, EventArgs e)
@@ -143,7 +140,7 @@ namespace ideesouper
                 int tempsPreparation = Convert.ToInt32(tempsPTextBox.Text);
                 int tempsCuisson = Convert.ToInt32(tempsCTextBox.Text);
                 string typeRecette = typeRepasComboBox.Text;
-                int nbPersonne = Convert.ToInt32(nombrePersonneNumericUpDown1.Text);
+                int nbPersonne = Convert.ToInt32(nombrePersonneNumericUpDown1.Value);
                 string instructions = etapeRecetteTextBox.Text;
                 string difficulte = difficulteComboBox.Text;
 
@@ -162,25 +159,30 @@ namespace ideesouper
                 interfaceBD.appelerProcedureStockee("AJOUT_RECETTE", collection);
                 int idRecette = Convert.ToInt32(collection[collection.Length - 1].Value);
 
-                foreach (ListViewItem ingredients in ingredientsListView.Items)
+                MessageBox.Show("La recette #" + idRecette + " a été créée avec succès");
+
+                foreach (ListViewItem ingredient in ingredientsListView.Items)
                 {
-                    string nomIngredient = ingredients.Text;
-                    int quantiteIngredient = Convert.ToInt32(ingredients.SubItems.ToString());
+                    string nomIngredient = ingredient.Text;
+                    //string qteingreTxt = ingredient.SubItems[1].Text;
+                    int quantiteIngredient = Convert.ToInt32(ingredient.SubItems[1].Text);
+                    MessageBox.Show("ingredient " + nomIngredient + " qte "+quantiteIngredient);
                     int idIngredient = Convert.ToInt32(interfaceBD.envoyerRequeteScalaire("SELECT INGREDIENT_ID FROM INGREDIENT WHERE NOM = '" + nomIngredient + "'"));
 
                     OracleParameter[] ingredientCollection = {
                         new OracleParameter("recette", OracleType.Number, 0, System.Data.ParameterDirection.Input, null, System.Data.DataRowVersion.Default, true, idRecette),
-                        new OracleParameter("idIngredient", OracleType.Number, 0, System.Data.ParameterDirection.Input, null, System.Data.DataRowVersion.Default, true, idIngredient),
+                        new OracleParameter("ingredient", OracleType.Number, 0, System.Data.ParameterDirection.Input, null, System.Data.DataRowVersion.Default, true, idIngredient),
                         new OracleParameter("qte", OracleType.Number, 0, System.Data.ParameterDirection.Input, null, System.Data.DataRowVersion.Default, true, quantiteIngredient)
                     };
                     interfaceBD.appelerProcedureStockee("AJOUT_RECETTE_INGREDIENT", ingredientCollection);
                 }
 
+                string nomCorrige = nom.First().ToString().ToUpper() + String.Join("", nom.Skip(1));
 
-                //if ((interfaceBD.envoyerRequeteScalaire("SELECT NOM FROM RECETTE WHERE RECETTE_ID = '" + nomIngredient + "'")) == nom)
+                if (Convert.ToString(interfaceBD.envoyerRequeteScalaire("SELECT NOM FROM RECETTE WHERE RECETTE_ID = " + idRecette)) == nomCorrige)
                 MessageBox.Show("La recette #" + idRecette + " a été créée avec succès");
-                //else
-                //MessageBox.Show("Une erreur s'est produite");
+                else
+                MessageBox.Show("Une erreur s'est produite");
             }
 
             else
