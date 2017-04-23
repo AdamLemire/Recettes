@@ -34,6 +34,9 @@ namespace ideesouper.ViewController.Controls
 
         private void Lock()
         {
+            
+            categorieComboBox.SelectedIndex = -1;
+            categorieComboBox.Text = "";
             ajouterBouton.Enabled = false;
             ingredientTexteBox.Enabled = false;
         }

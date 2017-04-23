@@ -47,12 +47,12 @@
             // 
             // categorieComboBox
             // 
+            this.categorieComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.categorieComboBox.FormattingEnabled = true;
             this.categorieComboBox.Location = new System.Drawing.Point(335, 161);
             this.categorieComboBox.Name = "categorieComboBox";
             this.categorieComboBox.Size = new System.Drawing.Size(121, 21);
             this.categorieComboBox.TabIndex = 1;
-            this.categorieComboBox.Text = "Catégorie";
             this.categorieComboBox.SelectedIndexChanged += new System.EventHandler(this.categorieComboBox_SelectedIndexChanged);
             // 
             // ingredientTexteBox
