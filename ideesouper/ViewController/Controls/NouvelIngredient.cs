@@ -74,7 +74,7 @@ namespace ideesouper.ViewController.Controls
                 interfaceBD.appelerProcedureStockee("AJOUT_NOUVEL_INGREDIENT", collection);
                 int idingredient = Convert.ToInt32(collection[collection.Length - 1].Value);
 
-                MessageBox.Show("La recette #" + idingredient + " a été créée avec succès");
+                MessageBox.Show("L'ingredient #" + idingredient + " a été ajouté avec succès");
             }
             else
             {
