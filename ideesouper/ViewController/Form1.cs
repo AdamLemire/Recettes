@@ -144,6 +144,13 @@ namespace ideesouper
                 suivanteButton.Enabled = true;
         }
 
-       
+        private void nouvelIngrédientToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            foreach (var panel in this.Controls.OfType<Panel>())
+            {
+                panel.Hide();
+            }
+            nouvelIngredientPanel.Show();
+        }
     }
 }
