@@ -70,8 +70,11 @@ namespace ideesouper.ViewController.Controls
                     new OracleParameter("ingredient_id", OracleType.Number, 0, System.Data.ParameterDirection.Output, null, System.Data.DataRowVersion.Default, true, 0)
                 };
 
+                //création de la recette
+                interfaceBD.appelerProcedureStockee("AJOUT_NOUVEL_INGREDIENT", collection);
+                int idingredient = Convert.ToInt32(collection[collection.Length - 1].Value);
 
-                //MessageBox.Show("La recette #" + idRecette + " a été créée avec succès");
+                MessageBox.Show("La recette #" + idingredient + " a été créée avec succès");
             }
             else
             {
